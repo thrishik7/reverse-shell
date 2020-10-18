@@ -1,3 +1,4 @@
 ## REVERSE SHELL 
-**
-run python3 client.py in the client system and python3 server.py to send shell commands to the client through multi socket connection 
+
+Simple reverse shell implemented using python. With multi client socket connection feature. Used to send shell commands from server to client systems.
+
